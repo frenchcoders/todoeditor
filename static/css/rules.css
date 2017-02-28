@@ -1,0 +1,216 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+* {
+  font-family: 'Raleway', sans-serif;
+}
+
+.header {
+  padding: 40px 40px;
+  text-align: center;
+  background-color: #555;
+  color: white;
+  border-bottom: 3px solid #333;
+}
+
+.go-back {
+	position: absolute;
+	top:0;
+	left:0;
+	height: 45px;
+	width: 45px;
+	background-color: #333;
+	border-bottom: 1px solid #333;
+	border-right: 1px solid #333;
+	color:#bbb;
+
+}
+
+.go-back a { color:#bbb; }
+.go-back i { color: #bbb !important; margin-top: 13px; }
+.go-back i:hover { color: white !important; }
+
+.modifying-elem { clear: both; color: white; background-color: #333; text-align:center; border-top: 2px solid #444;
+ 				  padding-top: 5px; padding-bottom:  7px; margin-top: 15px; }
+
+.home-modifying { margin-top: 0px; width: 75%; margin: auto;}
+
+h1 {
+  letter-spacing: 3px;
+  padding-bottom: 30px;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+ul li {
+  cursor: pointer;
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  background: #eee;
+  font-size: 23px;
+  transition: 0.2s;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  transition: background 0.2s linear;
+  -webkit-transition: background 0.2s linear;
+  -moz-transition: background 0.2s linear;
+}
+
+ul li:nth-child(odd) {
+  background: #f9f9f9;
+}
+
+ul li:hover {
+  background: #ddd;
+}
+
+ul li.checked {
+  background: #888;
+  color: #fff;
+  text-decoration: line-through;
+}
+
+ul li.checked::before {
+  content: '';
+  position: absolute;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 15px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+}
+
+ul li[class*="success"] {
+transition: background 1s linear;
+-webkit-transition: background 1s linear;
+-moz-transition: background 1s linear;
+background-color: #0B9444;
+color: white; }
+
+.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: #b4b4b4;
+  padding: 12px 16px 16px 16px
+}
+
+.close:hover {
+  background-color: black;
+  color: white;
+}
+
+.todoelem-modify {
+  position: absolute;
+  right: 60px;
+  top: 0;
+  color: #b4b4b4;
+  padding: 12px 16px 16px 16px
+}
+
+.todoelem-modify:hover {
+  background-color: black;
+  color: white;
+}
+
+
+.header:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+input, textarea {
+  border: 1px solid rgba(0,0,0,0.3);
+  width: 75%;
+  padding: 18px;
+  font-size: 22px;
+  border-right: 7px;
+}
+
+.left { float: left; }
+
+.mrg-auto {
+	display: block; margin: auto;
+}
+
+.todolist-add {
+  padding: 16px;
+  width: 75%;
+  background: #bbb;
+  color: #555;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.todolist-add:hover {
+  background-color: #444;
+  color: white;
+}
+
+.add {
+  padding: 16px;
+  width: 25%;
+  background: #bbb;
+  color: #555;
+  float: left;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.add:hover {
+  background-color: #444;
+  color: white;
+}
+
+.todolists-table {
+	border-collapse: collapse;
+	width: 71%;
+	margin:auto;
+	margin-top: 15px;
+	font-size: 1em;
+}
+
+.todolists-table thead tr th {
+	padding: 8px;
+	color:white;
+	background: #444;
+}
+
+.todolists-table tbody tr td {
+	text-align: center;
+	padding: 10px;
+	border-top: 1px solid #bbb;
+}
+
+a .fa { color: black; }
+.pointer:hover {cursor:pointer;}
+
+.medium { font-weight: bold; }
+
+
+.todolists-nts {
+	display: block;
+	width: 75%;
+	margin:auto;
+	margin-top: 30px;
+	text-align: center;
+	font-size: 2em;
+}
+
+.no-display { display: none; }
+.todolists-nts .small { font-size: 0.6em; }
