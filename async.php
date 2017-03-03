@@ -23,7 +23,7 @@ if(isset($_POST['action']) && $_POST['action'] == 'addTodoList'
 	if(!$id):
 
 		# REQUETE SQL
-		$SQL = 'INSERT INTO todolists VALUES(\'\', :title, :desc, :timestamp)';
+		$SQL = 'INSERT INTO todolists VALUES(NULL, :title, :desc, :timestamp)';
 		$r = $_PDO->prepare($SQL);
 
 		$r->bindValue(':title', $_POST['title'], PDO::PARAM_STR);
@@ -157,7 +157,7 @@ if(isset($_POST['action']) && $_POST['action'] == 'addTodoElem' && isset($_POST[
 	if(!$id):
 
 		# REQUETE SQL
-		$SQL = 'INSERT INTO todoelems VALUES(\'\', :title, :todo_id, :status, :timestamp)';
+		$SQL = 'INSERT INTO todoelems VALUES(NULL, :title, :todo_id, :status, :timestamp)';
 		$r = $_PDO->prepare($SQL);
 
 		$r->bindValue(':title', $_POST['title'], PDO::PARAM_STR);
