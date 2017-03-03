@@ -2,7 +2,7 @@
 # * * * * * * * * * * * * *
 # FICHIER DE CONFIGURATION
 # * * * * * * * * * * * * *
-
+session_start();
 # * * * * * * *
 # CONSTANTES
 # * * * * * * *
@@ -37,3 +37,10 @@ catch (PDOException $e) {
 	throw new Exception($e->getMessage());
 }
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+
+# * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+# MODELE DE GESTION DES JEUX DE DONNEES RELATIFS AUX UTILISATEURS
+# * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+include('models/users.php');
+$_Users = new Users($_PDO);
