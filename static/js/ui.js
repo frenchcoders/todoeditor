@@ -54,9 +54,6 @@ var UI = {
 			Queries.addTodoElem(todolistId, title, UI.toUpdateId);
 			// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-			// Reset de l'élément id stocké si nécéssaire
-			UI.toUpdateId = 0;
-
 		})
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -98,16 +95,16 @@ var UI = {
 
 				var row = $('<tr>').attr('data-todolist-id', res[key].id); // ligne
 				var indexCell = $('<td>').text(i); // numéro de l'ocurence
-				var titleCell = $('<td>').text(res[key].title).addClass('medium title-cell'); // cellule du titre
-				var descriptionCell = $('<td>').text(res[key].description).addClass('description-cell'); // cellule de la description
+				var titleCell = $('<td>').text(res[key].title).addClass('text-center title-cell medium'); // cellule du titre
+				var descriptionCell = $('<td>').text(res[key].description).addClass('description-cell text-center'); // cellule de la description
 				var dateCell = $('<td>').text(res[key].timestamp); // date d'insertion
-				var modifyCell = $('<td>').html($('<i>').addClass('fa fa-lg fa-edit modify-todolist pointer')); // modifier
+				var modifyCell = $('<td>').html($('<i>').addClass('fa fa-lg fa-edit modify-todolist pointer text-center')); // modifier
 
 				// Suppression
-				var deleteCell = $('<td>').html($('<i>').addClass('fa fa-lg fa-close delete-todolist pointer'));
+				var deleteCell = $('<td>').html($('<i>').addClass('fa fa-lg fa-close delete-todolist pointer text-center'));
 
 				// Afficher les données
-				var viewCellLink = $('<a>').attr('href', 'index.php?id=' + res[key].id).append($('<i>').addClass('fa fa-lg fa-eye'));
+				var viewCellLink = $('<a>').addClass('text-center').attr('href', 'index.php?id=' + res[key].id).append($('<i>').addClass('fa fa-lg fa-eye'));
 				var viewCell = $('<td>').append(viewCellLink);
 
 				// Construire le tableau
@@ -193,7 +190,7 @@ var UI = {
 			// * * * * * * * * * * * * * * * *
 			// ELEMENT DE LA LISTE DES TACHES
 			// * * * * * * * * * * * * * * * *
-			var li = $('<li>').html(res[key].title).attr('data-elem-id', res[key].id);
+			var li = $('<li>').html(res[key].title).attr('data-elem-id', res[key].id).attr('id', res[key].id);
 			// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 			// * * * * * * * * * * * * * * * * * *
@@ -211,6 +208,11 @@ var UI = {
 				// Affichage visuel mode " modifications "
 				$('.modifying-elem').removeClass('no-display');
 				// - - - - - - - - - - - - - - - - - - - -
+
+				// scrollTop
+				$('html, body').animate({ scrollTop: 0}, 100);
+
+				// - - - - - - - - - - - - - - - - - - -  -
 
 				// STOCKAGE DE L'ID DE L'ELEMENT A MODIFIER
 				UI.toUpdateId = id;
@@ -257,11 +259,23 @@ var UI = {
 		// * * * * * * * * * * * * * * * * * *
 		// SCROLLER AU DERNIER ELEMENT AJOUTE
 		// * * * * * * * * * * * * * * * * * *
-		console.log(needToScroll)
 		if(needToScroll) {
-			  $("html, body").animate({ scrollTop: $(document).height()-$(window).height() }, 100);
-			  UI.animateLastElem();
+
+			  // SCROLLER EN BAS DE PAGE
+			  if(!UI.toUpdateId) {
+				  $("html, body").animate({ scrollTop: $(document).height()-$(window).height() }, 100);
+			  }
+
+			  // SCROLLER A L'ELEMENT MODIFIE
+			  else {
+				  $('html, body').animate({ scrollTop: $('ul #' + UI.toUpdateId).offset().top - 100 }, 100);
+			  }
+
+			  UI.animateLiElem(UI.toUpdateId);
 		}
+
+		// Reset de l'interface d'ajout d'élément de tâches
+		UI.reset();
 	},
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -292,15 +306,27 @@ var UI = {
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
-	// * * * * * * * * * * * * * * * * * * * *
-	// ANIMATION SUR LE DERNIER ELEMENT AJOUTE
-	// * * * * * * * * * * * * * * * * * * * *
-	animateLastElem:function() {
+	// * * * * * * * * * * * * * * * * * * * * * * *
+	// ANIMATION SUR LES ELEMENTS DE LISTES DE TACHE
+	// * * * * * * * * * * * * * * * * * * * * * * *
+	animateLiElem:function(id) {
 
-		$('ul li:last').addClass('success');
+		var id = parseInt(id);
+
+		if(!id) {
+			// DERNIER ELEMENT AJOUTE
+			var selector = 'ul li:last'
+		}
+
+		else {
+			// L'ID D'UN ELEMENT EST PRECISE
+			var selector = 'ul #' + id;
+		}
+
+		$(selector).addClass('success');
 
 		var timer = setTimeout(function() {
-			$('ul li:last').removeClass('success');
+			$(selector).removeClass('success');
 		}, 5000);
 	},
 	// = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -335,6 +361,7 @@ var UI = {
 		// RESET DU MODE DE MODIFICATION
 		if(UI.toUpdateId) {
 			UI.toUpdateId = 0;
+			$('.modifying-elem').addClass('no-display')
 		}
 	}
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
