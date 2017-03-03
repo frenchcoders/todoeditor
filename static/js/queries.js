@@ -8,6 +8,7 @@ var Queries = {
 
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+
 	// = = = = = = = = = = = = = = = = = = = = = =
 	// -> RELATIF AUX METADONNEES DES TODO-LISTS
 	// = = = = = = = = = = = = = = = = = = = = = =
@@ -52,6 +53,7 @@ var Queries = {
 							description:description, id:id },
 
 					success:function(res) {
+						console.log
 						Queries.fetchTodoLists($('.todolist-id').val());
 						UI.reset();
 					},
@@ -138,7 +140,6 @@ var Queries = {
 					success:function(res) {
 						console.log(res)
 						Queries.fetchTodoElems($('.todolist-id').val(), 1);
-						UI.reset();
 					},
 
 					error:function() {
