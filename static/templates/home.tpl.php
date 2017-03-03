@@ -2,39 +2,73 @@
 * * * * * * * * * * * * * * * * * * * *
 HOMEPAGE DE L'EDITION DES TODO-LISTS
 * * * * * * * * * * * * * * * * * * * * -->
-<div id="header" class="header">
 
-  <h1>NOUVELLE TODO-LIST</h1>
+<!--
+* * * *
+HEADER
+* * * * -->
+<div class="jumbotron header">
 
-  	<input type="text" id="tache" class="todolist-name mrg-auto" placeholder="NOM DE LA TODO-LIST">
-	<textarea class="todolist-description mrg-auto" placeholder="DESCRIPTION DE LA TODO-LIST"></textarea>
+	<h1 class="display-3">Listes de tâches</h1>
+	<p class="lead">
+		Pour éditer les informations d'une liste de tâches, veuillez renseigner la valeur des champs ci-dessous.
+		<hr class="my-3" />
+	</p>
 
-  	<div class="todolist-add mrg-auto">
-		<i class="fa fa-plus fa-2x" aria-hidden="true"></i>
-  	</div>
+	<p>
+		<!-- Titre de la liste de tâches -->
+		<input type="text" id="tache"
+						   class="todolist-name form-control form-control-lg"
+						   placeholder="Nom de la liste de tâches"> <br />
 
-	<div class="modifying-elem home-modifying no-display">Modification d'un élément <i class="fa fa-lg fa-close pointer"></i></div>
+		<!-- Description de la liste de tâches -->
+		<textarea class="todolist-description form-control form-control-lg"
+				  placeholder="Description de la liste de tâches"></textarea>
+	</p>
+
+	<!-- DOM de l'indicateur de modification d'élément si nécéssaire -->
+	<div class="modifying-elem home-modifying no-display">
+		Modification d'un élément <i class="fa fa-lg fa-close pointer"></i>
+	</div>
+
+	<button class="btn btn-primary btn-lg todolist-add">Enregistrer les modifications</button>
 
 </div>
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
-<table class="todolists-table no-display">
-	<thead>
-		<tr>
-			<th>#</th>
-			<th>Titre</th>
-			<th>Description</th>
-			<th>Créée le</th>
-			<th>Modifier</th>
-			<th>Supprimer</th>
-			<th>Afficher</th>
-		</tr>
-	</thead>
-	<tbody>
-	</tbody>
-</table>
+<!--
+* * * * * * * * * * * * * *
+LISTE DES LISTES DE TACHES
+* * * * * * * * * * * * * * -->
+<div class="container-fluid">
 
-<p class="todolists-nts no-display">Il n'y a rien à afficher ! <br />
-<span class="small">Vous pouvez à tout moment créer votre première liste de tâches en utilisant le formulaire ci-dessus.</span></p>
+	<div class="row">
+		<div class="col-lg-12">
+
+			<table class="todolists-table table table-bordered no-display">
+				<thead class="table-inverse">
+					<tr>
+						<th>#</th>
+						<th class="text-center">Titre</th>
+						<th class="text-center">Description</th>
+						<th class="text-center">Créée le</th>
+						<th class="text-center">Modifier</th>
+						<th class="text-center">Supprimer</th>
+						<th class="text-center">Afficher</th>
+					</tr>
+				</thead>
+
+				<!-- @NOTE : Corps du tableau inséré dynamiquement via Javascript -->
+				<tbody></tbody>
+			</table>
+		</div>
+	</div>
+
+	<p class="todolists-nts no-display">Il n'y a rien à afficher ! <br />
+	<span class="small">Vous pouvez à tout moment créer votre première liste de tâches en utilisant le formulaire ci-dessus.</span></p>
+
+</div>
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
 <script>
 $(document).ready(function() {
